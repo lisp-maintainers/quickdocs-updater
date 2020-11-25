@@ -32,7 +32,8 @@ exec ros -Q -- $0 "$@"
 
 (defun main ()
   (unless (uiop:getenv "GITHUB_ACCESS_TOKEN")
-    (error "GITHUB_ACCESS_TOKEN is not set."))
+    (format *error-output* "GITHUB_ACCESS_TOKEN is not set.~&")
+    (uiop:quit 1))
 
   (let ((ql-dist-version (current-ql-dist-version))
         (latest-version
